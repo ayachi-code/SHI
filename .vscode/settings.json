@@ -86,6 +86,8 @@
         "shared_mutex": "cpp",
         "typeindex": "cpp",
         "charconv": "cpp",
-        "cuchar": "cpp"
+        "cuchar": "cpp",
+        "usefull.h": "c",
+        "encryption.h": "c"
     }
 }

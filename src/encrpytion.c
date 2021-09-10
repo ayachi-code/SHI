@@ -1,11 +1,9 @@
-#include <math.h>
 #include <stdio.h>
-#include <time.h>
-#include <string.h>
+#include "includes/encryption.h"
 
 /**
  * This encryption is made by Bilal
-*/
+**/
 
 char* convert_to_cipher(char* message) {
     return message;
