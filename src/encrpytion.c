@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "includes/encryption.h"
+#include "../includes/encryption.h"
 
 /**
  * This encryption is made by Bilal
