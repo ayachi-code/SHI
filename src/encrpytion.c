@@ -18,8 +18,7 @@ char* convert_to_hex(char* message) {
 }
 
 int main(int argc, char *argv[]) {
-    convert_to_hex("bilal");
-    // printf("%c",foo[1]);
-    //free(foo);
+    char* hex_array = convert_to_hex("bilal");
+    free(hex_array);
     return 0;
 }
