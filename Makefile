@@ -1,17 +1,11 @@
-# output: encryption.o
-# 	gcc src/encryption.o -o output
-build: kaas/foo.o
-	gcc kaas/foo.o -o output
+build: src/encrpytion.o src/usefull.o
+	gcc src/encrpytion.o src/usefull.o -o output
 
-$(kaas)/foo.o: foo.c
+$(src)/encrpytion.o: encrpytion.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
-# $(kaas)/foo.o: foo.c
-# 	gcc foo.c
+$(src)/usefull.o: usefull.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
-
-# encryption.o: src/encrpytion.c
-# 	gcc -c src/encrpytion.c
-
-# usefull.o: src/usefull.c includes/usefull.h
-# 	gcc -c src/usefull.c
+clean:
+	rm src/*.o output
