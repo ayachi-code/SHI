@@ -5,12 +5,12 @@
 
 int generate_prime_number() {
     srand(time(NULL));
-    int prime_number1 = rand() % 1000;
-    int prime_number2 = rand() % 1000;
-    while (prime_number2 == prime_number1) {
-        prime_number2 = rand() % 1000;
+    int random_number1 = rand() % 1000;
+    int random_number2 = rand() % 1000;
+    while (random_number1 == random_number2) {
+        random_number2 = rand() % 1000;
     }
-    printf("%d %d \n",prime_number1,prime_number2);
+    printf("%d %d \n",random_number1,random_number2);
 }
 
 int generate_publickey() { 
