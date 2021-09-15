@@ -1,16 +1,11 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include <time.h>
 #include "../includes/encryption.h"
 #include "../includes/usefull.h"
-
-int generate_prime_number() {
-    srand(time(NULL));
-    int random_number1 = rand() % 1000;
-    int random_number2 = rand() % 1000;
-    while (random_number1 == random_number2) {
-        random_number2 = rand() % 1000;
-    }
-    printf("%d %d \n",random_number1,random_number2);
+#include <math.h>
+//cpp com
+bool is_prime(int number) {
 }
 
 int generate_publickey() { 
@@ -18,6 +13,6 @@ int generate_publickey() {
 }
 
 int main(int argc, char *argv[]) {
-    generate_prime_number();
+    is_prime(21);
     return 0;
 }
