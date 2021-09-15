@@ -6,6 +6,18 @@
 #include <math.h>
 //cpp com
 bool is_prime(int number) {
+    int k = 1;
+    double n = 53-1;
+    while (true) {
+        n /= pow(2,k);
+        if (fmod(n,1)==0) {
+            k++;
+        } else {
+            n *= pow(2,k);
+            break;
+        }
+    }
+    printf("%f \n",n);
 }
 
 int generate_publickey() { 
