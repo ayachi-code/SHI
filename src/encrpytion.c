@@ -4,46 +4,38 @@
 #include "../includes/encryption.h"
 #include "../includes/usefull.h"
 #include <math.h>
+
+
+//ALS 
 //cpp com
 bool is_prime(int number) {
+    if (number % 2 == 0) {
+        printf("Geen prime \n");
+        return false;
+    }
     int k = 1;
     double n = number-1;
     int a = 2;
     double m = n;
+    //double x = 0;
     while (true) {
         m = n/pow(2,k);
-        //printf("%f \n",m);
         if (fmod(m,1)==0) {
-            k++;
+            k++; //2
         } else {
+            k--;
             m *= 2;
+            n = m;
             break;
         }
     }
     //printf("%f %d \n",n,k);
-    // int b0 = fmod(pow(2,n),number);
-    // if (b0 == fmod(1,number) || b0 == number-1) {
-    //     printf("Prime \n");
-    // }
-    // double b1 = 0;
-    // while (true) {
-    //     b1 = fmod(pow(b0,2),number);
-    //     printf("%f \n", b1);
-    //     if (b1 == fmod(1,number)) {
-    //         printf("geen prime \n");
-    //         break;
-    //     } else if (b1 == number-1) {
-    //         printf("PRIME \n");
-    //         break;
-    //     } else {
-    //         printf("volgende itteratie %f \n",b1);
-    //         break;
-    //     }
-    // }
-    // int b1 = 0;
-    // while (true) {
-    //     b1 = fmod(pow(),number);
-    // }
+    int b0 = fmod(pow(2,n),number);
+    printf("%d b\n",b0);
+    if (b0 == fmod(1,number) || b0 == number-1) {
+        printf("Prime \n");
+        return true;
+    }
 }
 
 int generate_publickey() { 
@@ -51,6 +43,6 @@ int generate_publickey() {
 }
 
 int main(int argc, char *argv[]) {
-    is_prime(53);
+    is_prime(87);
     return 0;
 }
