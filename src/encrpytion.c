@@ -12,6 +12,22 @@ bool is_prime(int number) {
         printf("Geen prime \n");
         return false;
     }
+    int k = 1;
+    double n = number-1;
+    int a = 2;
+    double m = n;
+    //double x = 0;
+    while (true) {
+        m = n/pow(2,k);
+        if (fmod(m,1)==0) {
+            k++; //2
+        } else {
+            k--;
+            m *= 2;
+            n = m;
+            break;
+        }
+    }
     }
 int generate_publickey() { 
     return 1;
