@@ -44,6 +44,7 @@ bool is_prime(int number) {
     }
     return false;
 }
+
 int generate_publickey() { 
     return 1;
 }
