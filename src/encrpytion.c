@@ -16,7 +16,6 @@ bool is_prime(int number) {
     double n = number-1;
     int a = 2;
     double m = n;
-    //double x = 0;
     while (true) {
         m = n/pow(2,k);
         if (fmod(m,1)==0) {
@@ -32,27 +31,28 @@ bool is_prime(int number) {
     if (b0 == modulo(1,1,number) || b0 == number-1) {
         printf("Prime \n");
         return true;
-    }
-    double b1 = 0;
+    }   
+    uint64_t b1 = 0;
     for (int failed_cases = 0; failed_cases < 12; failed_cases++) {
          b1 = modulo(b0,2,number);
         if (b1 == modulo(1,1,number)) {
             printf("geen prime \n");
-            break;
         } else if (b1 == number-1) {
-            printf("PRIME \n");
-            break;
+            printf("Prime \n");
         } else {
             failed_cases++;
             b0 = b1;
         }
     }
+    if (failed_cases >= 12) {
+        printf("geen prime \n");
     }
+}
 int generate_publickey() { 
     return 1;
 }
 
 int main(int argc, char *argv[]) {
-    is_prime(11);
+    is_prime(123);
     return 0;
 }
