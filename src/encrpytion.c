@@ -45,6 +45,10 @@ bool is_prime(int number) {
     return false;
 }
 
+int generate_prime() {
+    
+}
+
 int generate_publickey() { 
     return 1;
 }
