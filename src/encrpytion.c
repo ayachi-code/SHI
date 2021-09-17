@@ -28,6 +28,11 @@ bool is_prime(int number) {
             break;
         }
     }
+    uint64_t b0 = modulo(2,n,number);
+    if (b0 == modulo(1,1,number) || b0 == number-1) {
+        printf("Prime \n");
+        return true;
+    }
     }
 int generate_publickey() { 
     return 1;
