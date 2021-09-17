@@ -8,3 +8,17 @@ int string_length(char* message) {
     }
     return characters_count;   
 }
+
+long long modulo(long long base, long long exponent, long long mod)
+{
+    long long x = 1;
+    long long y = base;
+    while (exponent > 0)
+    {
+        if (exponent % 2 == 1)
+            x = (x * y) % mod;
+        y = (y * y) % mod;
+        exponent = exponent / 2;
+    }
+    return x % mod;
+}
