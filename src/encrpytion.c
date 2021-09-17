@@ -33,6 +33,20 @@ bool is_prime(int number) {
         printf("Prime \n");
         return true;
     }
+    double b1 = 0;
+    for (int failed_cases = 0; failed_cases < 12; failed_cases++) {
+         b1 = modulo(b0,2,number);
+        if (b1 == modulo(1,1,number)) {
+            printf("geen prime \n");
+            break;
+        } else if (b1 == number-1) {
+            printf("PRIME \n");
+            break;
+        } else {
+            failed_cases++;
+            b0 = b1;
+        }
+    }
     }
 int generate_publickey() { 
     return 1;
