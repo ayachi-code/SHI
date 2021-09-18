@@ -47,10 +47,9 @@ bool is_prime(int number) {
 }
 
 int generate_prime() {
-    uint64_t random_number = 0;
+    int random_number = 0;
     while (true) {
         random_number = 1000000000 + floor(rand() % 9999999999);
-        printf("%llu \n",random_number);
         if (is_prime(random_number)) {
             // printf("%llu is prime \n",random_number);
             return random_number;
@@ -59,9 +58,9 @@ int generate_prime() {
 }
 
 int* generate_publickey() { 
-    generate_prime();
-    generate_prime();
-    // printf("PRIEM: %llu %llu \n ",primenumber1,primenumber2);
+    int primenumber1 = generate_prime();
+    int primenumber2 = generate_prime();
+    printf("%d %d \n",primenumber1,primenumber2);
     return 1;
 }
 
