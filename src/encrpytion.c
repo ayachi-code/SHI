@@ -5,6 +5,7 @@
 #include "../includes/usefull.h"
 #include <math.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 //cpp com
 bool is_prime(int number) {
