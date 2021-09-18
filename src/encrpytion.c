@@ -58,11 +58,10 @@ int generate_prime() {
     }
 }
 
-int generate_publickey() { 
+int* generate_publickey() { 
     return 1;
 }
 
 int main(int argc, char *argv[]) {
-    generate_prime();    
     return 0;
 }

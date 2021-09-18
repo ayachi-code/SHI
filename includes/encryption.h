@@ -1,7 +1,7 @@
 /**
  * @returns returns the public key pair
  **/
-int generate_publickey();
+int* generate_publickey();
 
 /**
  * Checks if number is prime
