@@ -49,6 +49,8 @@ bool is_prime(int number) {
 
 int generate_prime() {
     int random_number = 0;
+    // struct bn random_number;
+    // bignum_init(&primenumber);
     while (true) {
         random_number = 1000000000 + floor(rand() % 9999999999);
         if (is_prime(random_number)) {
@@ -66,8 +68,20 @@ int* generate_publickey() {
 }
 
 int main(int argc, char *argv[]) {
-    time_t t;
-    srand((unsigned) time(&t));
-    generate_publickey();
+    // time_t t;
+    // srand((unsigned) time(&t));
+    // generate_publickey();
+
+
+    struct bn x;
+    struct bn y;
+    struct bn z;
+    bignum_from_int(&x, 2);
+    bignum_from_int(&y, 100);
+    bignum_pow(&x,&y,&z);
+    char buf[256];
+    bignum_to_string(&z, buf, sizeof(buf));
+    printf("%s \n",buf);
+
     return 0;
 }
