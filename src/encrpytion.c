@@ -47,25 +47,27 @@ bool is_prime(int number) {
 }
 
 int generate_prime() {
-    time_t t;
-    srand((unsigned) time(&t));
-    int random_number = 0;
+    uint64_t random_number = 0;
     while (true) {
         random_number = 1000000000 + floor(rand() % 9999999999);
+        printf("%llu \n",random_number);
         if (is_prime(random_number)) {
-            printf("%d is prime \n",random_number);
-            break;
+            // printf("%llu is prime \n",random_number);
+            return random_number;
         }
     }
 }
 
 int* generate_publickey() { 
-    uint64_t primenumber1 = generate_prime();
-    uint64_t primenumber2 = generate_prime();
+    generate_prime();
+    generate_prime();
+    // printf("PRIEM: %llu %llu \n ",primenumber1,primenumber2);
     return 1;
 }
 
 int main(int argc, char *argv[]) {
+    time_t t;
+    srand((unsigned) time(&t));
     generate_publickey();
     return 0;
 }
