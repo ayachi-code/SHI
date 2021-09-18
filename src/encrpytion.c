@@ -6,6 +6,7 @@
 #include <math.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include "../includes/libs/bn.h"
 
 //cpp com
 bool is_prime(int number) {
@@ -51,7 +52,6 @@ int generate_prime() {
     while (true) {
         random_number = 1000000000 + floor(rand() % 9999999999);
         if (is_prime(random_number)) {
-            // printf("%llu is prime \n",random_number);
             return random_number;
         }
     }
@@ -60,7 +60,8 @@ int generate_prime() {
 int* generate_publickey() { 
     int primenumber1 = generate_prime();
     int primenumber2 = generate_prime();
-    printf("%d %d \n",primenumber1,primenumber2);
+    struct bn foo;
+    char buf[892];
     return 1;
 }
 
