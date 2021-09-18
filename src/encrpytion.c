@@ -60,7 +60,8 @@ int generate_prime() {
 }
 
 int* generate_publickey() { 
-    printf("Hello world \n");
+    uint64_t primenumber1 = generate_prime();
+    uint64_t primenumber2 = generate_prime();
     return 1;
 }
 
