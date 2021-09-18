@@ -46,7 +46,16 @@ bool is_prime(int number) {
 }
 
 int generate_prime() {
-    
+    time_t t;
+    srand((unsigned) time(&t));
+    int random_number = 0;
+    while (true) {
+        random_number = 1000000000 + floor(rand() % 9999999999);
+        if (is_prime(random_number)) {
+            printf("%d is prime \n",random_number);
+            break;
+        }
+    }
 }
 
 int generate_publickey() { 
@@ -54,7 +63,6 @@ int generate_publickey() {
 }
 
 int main(int argc, char *argv[]) {
-    
-    is_prime(12);
+    generate_prime();    
     return 0;
 }
