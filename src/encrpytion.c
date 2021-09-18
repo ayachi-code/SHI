@@ -59,9 +59,11 @@ int generate_prime() {
 }
 
 int* generate_publickey() { 
+    printf("Hello world \n");
     return 1;
 }
 
 int main(int argc, char *argv[]) {
+    generate_publickey();
     return 0;
 }
