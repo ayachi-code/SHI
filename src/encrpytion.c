@@ -63,11 +63,19 @@ int* generate_publickey() {
     struct bn primenumber1;
     struct bn primenumber2;
     struct bn primenumber_multiplication;
+    struct bn totient;
+    struct bn primenumber1_dec;
+    struct bn primenumber2_dec;
     bignum_from_int(&primenumber1, generate_prime());
     bignum_from_int(&primenumber2, generate_prime());
     bignum_mul(&primenumber1, &primenumber2, &primenumber_multiplication);
+    bignum_assign(&primenumber1_dec,&primenumber1);
+    bignum_assign(&primenumber2_dec,&primenumber2);
+    bignum_dec(&primenumber1_dec);
+    bignum_dec(&primenumber2_dec);
+    bignum_mul(&primenumber1_dec, &primenumber2_dec, &totient);
     char str[256];
-    bignum_to_string(&primenumber_multiplication, str, sizeof(str));
+    bignum_to_string(&totient, str, sizeof(str));
     printf("%s \n",str);
     return 1;
 }
