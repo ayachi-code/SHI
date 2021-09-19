@@ -19,3 +19,11 @@ long long modulo(long long base, long long exponent, long long mod);
  * @param N the product of the two primes
  **/
 struct bn public_ekey(struct bn totien, struct bn N);
+
+/**
+ * @return returns the gcd of the numbers
+ * @param number1 a postive integer
+ * @param number2 a postive integer
+ * @note the gcd is calculated with the Euclid's algorithm.
+ **/  
+int gcd(long number1, long number2);

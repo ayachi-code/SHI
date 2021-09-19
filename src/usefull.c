@@ -30,15 +30,15 @@ struct bn public_ekey(struct bn totien, struct bn N) {
     bignum_to_string(&N, buf2, sizeof(buf2));
     long totient_digits = strtol(buf, NULL, 16);
     long N_digits = strtol(buf2, NULL, 16);
-    long x = 0;
-    // while (true) {
-    //     x = rand() % (totient_digits-2) + 2;
-    //     printf("%ld \n",x);
-    //     printf("%ld \n",totient_digits);
-    //     // if (x % totient_digits != 0) {
-    //     //     printf("FOO \n");
-    //     //     break;
-    //     // }
-    //     break;
-    // }
+    long e = 0;
+    while (true) {
+        e = rand() % (totient_digits-2) + 2;
+        printf("%ld \n",e);
+        printf("%ld \n",totient_digits);
+        // if (x % totient_digits != 0) {
+        //     printf("FOO \n");
+        //     break;
+        // }
+        break;
+    }
 }
