@@ -49,8 +49,6 @@ bool is_prime(int number) {
 
 int generate_prime() {
     int random_number = 0;
-    // struct bn random_number;
-    // bignum_init(&primenumber);
     while (true) {
         random_number = 1000000000 + floor(rand() % 9999999999);
         if (is_prime(random_number)) {
@@ -74,9 +72,10 @@ int* generate_publickey() {
     bignum_dec(&primenumber1_dec);
     bignum_dec(&primenumber2_dec);
     bignum_mul(&primenumber1_dec, &primenumber2_dec, &totient);
-    char str[256];
-    bignum_to_string(&totient, str, sizeof(str));
-    printf("%s \n",str);
+    
+    // char str[256];
+    // bignum_to_string(&totient, str, sizeof(str));
+    // printf("%s \n",str);
     return 1;
 }
 
