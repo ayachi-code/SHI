@@ -88,6 +88,7 @@
         "charconv": "cpp",
         "cuchar": "cpp",
         "usefull.h": "c",
-        "encryption.h": "c"
+        "encryption.h": "c",
+        "stdbool.h": "c"
     }
 }

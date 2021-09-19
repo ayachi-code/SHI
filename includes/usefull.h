@@ -1,4 +1,6 @@
 #include "libs/bn.h"
+#include <stdbool.h>
+#include <stdlib.h>
 
 /**
  * @returns returns the length of the message

@@ -64,15 +64,16 @@ int* generate_publickey() {
     struct bn totient;
     struct bn primenumber1_dec;
     struct bn primenumber2_dec;
-    bignum_from_int(&primenumber1, generate_prime());
-    bignum_from_int(&primenumber2, generate_prime());
+    bignum_from_int(&primenumber1, 2);
+    bignum_from_int(&primenumber2, 7);
     bignum_mul(&primenumber1, &primenumber2, &primenumber_multiplication);
     bignum_assign(&primenumber1_dec,&primenumber1);
     bignum_assign(&primenumber2_dec,&primenumber2);
     bignum_dec(&primenumber1_dec);
     bignum_dec(&primenumber2_dec);
     bignum_mul(&primenumber1_dec, &primenumber2_dec, &totient);
-    
+
+    public_ekey(totient,primenumber_multiplication);
     // char str[256];
     // bignum_to_string(&totient, str, sizeof(str));
     // printf("%s \n",str);
@@ -83,5 +84,12 @@ int main(int argc, char *argv[]) {
     time_t t;
     srand((unsigned) time(&t));
     generate_publickey();
+    // struct bn x;
+    // struct bn y;
+    // struct bn z;
+    // z = public_ekey(x,y);
+    // char buf[256];
+    // bignum_to_string(&z, buf, sizeof(buf));
+    // printf("%s \n", buf);
     return 0;
 }

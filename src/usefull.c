@@ -22,3 +22,23 @@ long long modulo(long long base, long long exponent, long long mod)
     }
     return x % mod;
 }
+
+struct bn public_ekey(struct bn totien, struct bn N) {
+    char buf[256];
+    char buf2[512];
+    bignum_to_string(&totien, buf, sizeof(buf));
+    bignum_to_string(&N, buf2, sizeof(buf2));
+    long totient_digits = strtol(buf, NULL, 16);
+    long N_digits = strtol(buf2, NULL, 16);
+    long x = 0;
+    // while (true) {
+    //     x = rand() % (totient_digits-2) + 2;
+    //     printf("%ld \n",x);
+    //     printf("%ld \n",totient_digits);
+    //     // if (x % totient_digits != 0) {
+    //     //     printf("FOO \n");
+    //     //     break;
+    //     // }
+    //     break;
+    // }
+}
