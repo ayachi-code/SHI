@@ -62,9 +62,13 @@ int generate_prime() {
 int* generate_publickey() { 
     struct bn primenumber1;
     struct bn primenumber2;
+    struct bn primenumber_multiplication;
     bignum_from_int(&primenumber1, generate_prime());
-    bignum_from_int(&primenumber2, generate_prime())''
-    
+    bignum_from_int(&primenumber2, generate_prime());
+    bignum_mul(&primenumber1, &primenumber2, &primenumber_multiplication);
+    char str[256];
+    bignum_to_string(&primenumber_multiplication, str, sizeof(str));
+    printf("%s \n",str);
     return 1;
 }
 
@@ -72,18 +76,5 @@ int main(int argc, char *argv[]) {
     time_t t;
     srand((unsigned) time(&t));
     generate_publickey();
-
-    struct bn x;
-    struct bn y;
-    struct bn z;
-    // int a = generate_prime();
-    // int b = generate_prime();
-    // bignum_from_int(&x, a);
-    // bignum_from_int(&y, b);
-    // bignum_mul(&x,&y,&z);
-    // char buf3[256];
-    // bignum_to_string(&z, buf3, sizeof(buf3));
-    // printf("%d x %d = %s \n",a,b,buf3);
-
     return 0;
 }
