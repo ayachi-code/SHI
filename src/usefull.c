@@ -24,8 +24,18 @@ long long modulo(long long base, long long exponent, long long mod)
 }
 
 int gcd(long number1, long number2) {
-    printf("%ld \n", number1);
-    printf("%ld \n", number2);
+    long temp = 0;
+    long extra = 0;
+    while (true) {
+        temp = number1 / number2;
+        extra = number1 - (number2*temp);
+        if (extra == 0) {
+            printf("De gcd is %ld \n",number2);
+            break;
+        }
+        number1 = number2;
+        number2 = extra;
+    }
     return 0;
 }
 
@@ -37,7 +47,7 @@ struct bn public_ekey(struct bn totien, struct bn N) {
     long totient_digits = strtol(buf, NULL, 16);
     long N_digits = strtol(buf2, NULL, 16);
     long e = 0;
-    gcd(2,3);
+    gcd(256,6);
     // while (true) {
     //     e = rand() % (totient_digits-2) + 2;
     //     printf("%ld \n",e);
