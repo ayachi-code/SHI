@@ -45,15 +45,11 @@ struct bn public_ekey(struct bn totien, struct bn N) {
     long totient_digits = strtol(buf, NULL, 16);
     long N_digits = strtol(buf2, NULL, 16);
     long e = 0;
-    gcd(256,6);
-    // while (true) {
-    //     e = rand() % (totient_digits-2) + 2;
-    //     printf("%ld \n",e);
-    //     printf("%ld \n",totient_digits);
-    //     // if (x % totient_digits != 0) {
-    //     //     printf("FOO \n");
-    //     //     break;
-    //     // }
-    //     break;
-    // }
+    while (true) {
+        e = rand() % (totient_digits-2) + 2;
+        if (gcd(totient_digits,e) == 1 && gcd(N_digits,e) == 1) {
+            printf("%ld \n",e);
+            break;
+        }
+    }
 }
