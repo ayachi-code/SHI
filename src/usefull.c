@@ -30,13 +30,11 @@ int gcd(long number1, long number2) {
         temp = number1 / number2;
         extra = number1 - (number2*temp);
         if (extra == 0) {
-            printf("De gcd is %ld \n",number2);
-            break;
+            return number2;
         }
         number1 = number2;
         number2 = extra;
     }
-    return 0;
 }
 
 struct bn public_ekey(struct bn totien, struct bn N) {
