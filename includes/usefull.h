@@ -18,7 +18,7 @@ long long modulo(long long base, long long exponent, long long mod);
  * @param totien the totient value of the 2 prime numbers
  * @param N the product of the two primes
  **/
-struct bn public_ekey(struct bn totien, struct bn N);
+long public_ekey(struct bn totien, struct bn N);
 
 /**
  * @return returns the greatest common factorof the 2 numbers

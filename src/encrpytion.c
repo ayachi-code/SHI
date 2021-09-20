@@ -57,7 +57,7 @@ int generate_prime() {
     }
 }
 
-int* generate_publickey() { 
+char* generate_publickey() { 
     struct bn primenumber1;
     struct bn primenumber2;
     struct bn primenumber_multiplication;
@@ -72,24 +72,21 @@ int* generate_publickey() {
     bignum_dec(&primenumber1_dec);
     bignum_dec(&primenumber2_dec);
     bignum_mul(&primenumber1_dec, &primenumber2_dec, &totient);
-
-    public_ekey(totient,primenumber_multiplication);
-    // char str[256];
-    // bignum_to_string(&totient, str, sizeof(str));
-    // printf("%s \n",str);
-    return 1;
+    long x = public_ekey(totient,primenumber_multiplication);
+    char* buf =  (char*) malloc(20*sizeof(char));
+    // char* buf2 = (char*) malloc(1000*sizeof(char));
+    char buf2[512];
+    sprintf(buf,"%lx",x);
+    bignum_to_string(&primenumber_multiplication, buf2, sizeof(buf2));
+    char* public_keypair = malloc(2 * sizeof(char));
+    public_keypair[0] = *buf;
+    public_keypair[1] = *buf2; 
+    return public_keypair;
 }
 
 int main(int argc, char *argv[]) {
-    time_t t;
+    time_t t; 
     srand((unsigned) time(&t));
     generate_publickey();
-    // struct bn x;
-    // struct bn y;
-    // struct bn z;
-    // z = public_ekey(x,y);
-    // char buf[256];
-    // bignum_to_string(&z, buf, sizeof(buf));
-    // printf("%s \n", buf);
     return 0;
 }

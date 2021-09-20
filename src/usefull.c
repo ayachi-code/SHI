@@ -37,7 +37,7 @@ int gcd(long number1, long number2) {
     }
 }
 
-struct bn public_ekey(struct bn totien, struct bn N) {
+long public_ekey(struct bn totien, struct bn N) {
     char buf[256];
     char buf2[512];
     bignum_to_string(&totien, buf, sizeof(buf));
@@ -48,8 +48,7 @@ struct bn public_ekey(struct bn totien, struct bn N) {
     while (true) {
         e = rand() % (totient_digits-2) + 2;
         if (gcd(totient_digits,e) == 1 && gcd(N_digits,e) == 1) {
-            printf("%ld \n",e);
-            break;
+            return e;
         }
     }
 }
