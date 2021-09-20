@@ -21,7 +21,7 @@ long long modulo(long long base, long long exponent, long long mod);
 struct bn public_ekey(struct bn totien, struct bn N);
 
 /**
- * @return returns the gcd of the numbers
+ * @return returns the greatest common factorof the 2 numbers
  * @param number1 a postive integer
  * @param number2 a postive integer
  * @note the gcd is calculated with the Euclid's algorithm.
