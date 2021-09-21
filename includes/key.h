@@ -4,6 +4,11 @@
 char* generate_publickey();
 
 /**
+ * @return returns the private key pair
+ **/
+char* generate_privatekey();
+
+/**
  * Checks if number is prime
  * @returns true if number is prime
  **/ 

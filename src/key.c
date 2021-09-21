@@ -74,7 +74,6 @@ char* generate_publickey() {
     bignum_mul(&primenumber1_dec, &primenumber2_dec, &totient);
     long x = public_ekey(totient,primenumber_multiplication);
     char* buf =  (char*) malloc(20*sizeof(char));
-    // char* buf2 = (char*) malloc(1000*sizeof(char));
     char buf2[512];
     sprintf(buf,"%lx",x);
     bignum_to_string(&primenumber_multiplication, buf2, sizeof(buf2));
@@ -87,6 +86,7 @@ char* generate_publickey() {
 int main(int argc, char *argv[]) {
     time_t t; 
     srand((unsigned) time(&t));
-    generate_publickey();
+    char* foo = generate_publickey();
+    printf("%c \n",foo[1]); //(5,11);
     return 0;
 }
