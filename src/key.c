@@ -84,13 +84,37 @@ char* generate_publickey() {
 }
 
 char* generate_privatekey(char public_ekey, char totient) {
-    printf("Generating private key \n");
+    //e^-1 * mod(totient)
+    struct bn e;
+    struct bn tot;
+    char public_ekey_hex[9550];
+    printf("%c \n",public_ekey);
+    char a[100] = "1A85";
+    bignum_from_string(&e, &a , 8);
+    bignum_dec(&e);
+    bignum_to_string(&e, public_ekey_hex, sizeof(public_ekey_hex));
+    printf("%s \n",public_ekey_hex);
+    // char x[255];
+    // bignum_from_string(&e, buf, sizeof(buf));
+    // bignum_inc(&e);
+    // bignum_to_string(&e, x, sizeof(x));
+    // printf("%s \n",public_ekey_hex);
 }
 
 int main(int argc, char *argv[]) {
     time_t t; 
     srand((unsigned) time(&t));
-    char* public_keypairs = generate_publickey();
-    generate_privatekey(public_keypairs[0], public_keypairs[1]);
+    char* public_pair = generate_publickey();
+    generate_privatekey(public_pair[0], public_pair[1]);
+    // struct bn foo;
+    // bignum_init(&foo);
+    // char iabuf[8192];
+    // char* public_keypairs = generate_publickey();
+    // bignum_from_string(&foo, "A", 8);
+    // bignum_dec(&foo);
+    // bignum_to_string(&foo, iabuf, sizeof(iabuf));
+    // printf("%s \n", iabuf);
+
+    // printf("%c \n",public_keypairs[1]);
     return 0;
-}
+} 
