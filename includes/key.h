@@ -6,7 +6,7 @@ char* generate_publickey();
 /**
  * @return returns the private key pair
  **/
-char* generate_privatekey();
+char* generate_privatekey(char public_ekey, char totient);
 
 /**
  * Checks if number is prime

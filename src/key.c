@@ -83,10 +83,14 @@ char* generate_publickey() {
     return public_keypair;
 }
 
+char* generate_privatekey(char public_ekey, char totient) {
+    printf("Generating private key \n");
+}
+
 int main(int argc, char *argv[]) {
     time_t t; 
     srand((unsigned) time(&t));
-    char* foo = generate_publickey();
-    printf("%c \n",foo[1]); //(5,11);
+    char* public_keypairs = generate_publickey();
+    generate_privatekey(public_keypairs[0], public_keypairs[1]);
     return 0;
 }
