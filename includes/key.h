@@ -5,6 +5,8 @@ char* generate_publickey();
 
 /**
  * @return returns the private key pair
+ * @param public_ekey Public key e value
+ * @param totient the totient value
  **/
 char* generate_privatekey(char public_ekey, char totient);
 
