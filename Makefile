@@ -1,5 +1,8 @@
-build: src/encrpytion.o src/usefull.o src/bn.o
-	gcc src/encrpytion.o src/usefull.o src/bn.o -o output
+build: src/encrpytion.o src/usefull.o src/bn.o src/key.o
+	gcc src/encrpytion.o src/usefull.o src/bn.o src/key.o -o output
+
+$(src)/key.o: key.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 $(src)/encrpytion.o: encrpytion.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<

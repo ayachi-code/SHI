@@ -89,6 +89,7 @@
         "cuchar": "cpp",
         "usefull.h": "c",
         "encryption.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "key.h": "c"
     }
 }
