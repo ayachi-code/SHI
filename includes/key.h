@@ -8,7 +8,7 @@ char* generate_publickey();
  * @param public_ekey Public key e value
  * @param totient the totient value
  **/
-char* generate_privatekey(char public_ekey, char product);//char public_ekey, char product);
+char* generate_privatekey(char public_ekey, char totient);//char public_ekey, char product);
 
 /**
  * Checks if number is prime

@@ -76,35 +76,44 @@ char* generate_publickey() {
     char* buf =  (char*) malloc(20*sizeof(char));
     char buf2[512];
     sprintf(buf,"%lx",x);
-    bignum_to_string(&primenumber_multiplication, buf2, sizeof(buf2));
-    char* public_keypair = malloc(2 * sizeof(char));
+    bignum_to_string(&totient, buf2, sizeof(buf2));
+    char* public_keypair = (char*) malloc(2 * sizeof(char));
     public_keypair[0] = *buf;
     public_keypair[1] = *buf2; 
     return public_keypair;
 }
 //The raven
-char* generate_privatekey(char public_ekey, char product) {
-    //ed = 1 mod(product)
+char* generate_privatekey(char public_ekey, char totient) {
+    //d = (1+x*6)/5 === 1
     struct bn e;
-    struct bn products;
+    struct bn totients;
     struct bn e_d_mult;
     char public_ekey_hex[9000];
     char buf[1024];
     char buf2[1024];
     sprintf(buf, "%c", public_ekey);
-    sprintf(buf2, "%c", product);
+    sprintf(buf2, "%c", totient);
     bignum_from_string(&e, buf, 8); 
-    bignum_from_string(&products, buf2, 8); 
-    bignum_mul(&e,&products, &e_d_mult);
-    bignum_to_string(&e_d_mult, public_ekey_hex, sizeof(public_ekey_hex));
-    printf("%s ",public_ekey_hex);
+    bignum_from_string(&totients, buf2, 8); 
+    //int i = 0;
+    struct bn d;
+    struct bn d_e;
+    struct bn mod_val;
+    bignum_from_int(&d, 2);
+    while (true) {
+        bignum_mul(&d, &e, &d_e);
+        bignum_mod(&d_e, &totients, &mod_val);
+        bignum_to_string(&mod_val, public_ekey_hex, sizeof(public_ekey_hex));
+        printf("%s ",public_ekey_hex);
+        break;
+    }
+    // bignum_mul(&e,&products, &e_d_mult);
 }
 
 int main(int argc, char *argv[]) {
     time_t t; 
     srand((unsigned) time(&t));
     char* public_pair = generate_publickey();
-    // printf("%c \n",public_pair[1]);
     generate_privatekey(public_pair[0],public_pair[1]);
     return 0;
 } 
