@@ -82,39 +82,29 @@ char* generate_publickey() {
     public_keypair[1] = *buf2; 
     return public_keypair;
 }
-
-char* generate_privatekey(char public_ekey, char totient) {
-    //e^-1 * mod(totient)
+//The raven
+char* generate_privatekey(char public_ekey, char product) {
+    //ed = 1 mod(product)
     struct bn e;
-    struct bn tot;
-    char public_ekey_hex[9550];
-    printf("%c \n",public_ekey);
-    char a[100] = "1A85";
-    bignum_from_string(&e, &a , 8);
-    bignum_dec(&e);
-    bignum_to_string(&e, public_ekey_hex, sizeof(public_ekey_hex));
-    printf("%s \n",public_ekey_hex);
-    // char x[255];
-    // bignum_from_string(&e, buf, sizeof(buf));
-    // bignum_inc(&e);
-    // bignum_to_string(&e, x, sizeof(x));
-    // printf("%s \n",public_ekey_hex);
+    struct bn products;
+    struct bn e_d_mult;
+    char public_ekey_hex[9000];
+    char buf[1024];
+    char buf2[1024];
+    sprintf(buf, "%c", public_ekey);
+    sprintf(buf2, "%c", product);
+    bignum_from_string(&e, buf, 8); 
+    bignum_from_string(&products, buf2, 8); 
+    bignum_mul(&e,&products, &e_d_mult);
+    bignum_to_string(&e_d_mult, public_ekey_hex, sizeof(public_ekey_hex));
+    printf("%s ",public_ekey_hex);
 }
 
 int main(int argc, char *argv[]) {
     time_t t; 
     srand((unsigned) time(&t));
     char* public_pair = generate_publickey();
-    generate_privatekey(public_pair[0], public_pair[1]);
-    // struct bn foo;
-    // bignum_init(&foo);
-    // char iabuf[8192];
-    // char* public_keypairs = generate_publickey();
-    // bignum_from_string(&foo, "A", 8);
-    // bignum_dec(&foo);
-    // bignum_to_string(&foo, iabuf, sizeof(iabuf));
-    // printf("%s \n", iabuf);
-
-    // printf("%c \n",public_keypairs[1]);
+    // printf("%c \n",public_pair[1]);
+    generate_privatekey(public_pair[0],public_pair[1]);
     return 0;
 } 
