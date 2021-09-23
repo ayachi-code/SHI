@@ -53,6 +53,6 @@ long public_ekey(struct bn totien, struct bn N) {
     }
 }
 
-void insert_buffers_in_array(int *foo) {
-    *foo = 1;
+void insert_buffers_in_array(char *array, char*buffer1, char*buffer2) {
+    return;
 }

@@ -80,9 +80,6 @@ char* generate_publickey() {
     sprintf(buf,"%lx",e);
     bignum_to_string(&totient, buf2, sizeof(buf2));
     char* public_keypair = (char*) malloc(2 * sizeof(char));
-    int bilal = 12;
-    insert_buffers_in_array(&bilal);
-    printf("%d \n",bilal);
     // public_keypair[0] = buf2[0];
     // public_keypair[1] = buf2[1];
     // public_keypair[1] = *buf2; 

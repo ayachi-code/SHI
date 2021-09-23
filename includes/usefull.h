@@ -35,5 +35,5 @@ int gcd(long number1, long number2);
  *@param buffer2 buffer 2
 
 */
-void insert_buffers_in_array(int *foo);
+void insert_buffers_in_array(char *array, char*buffer1, char*buffer2);
 
