@@ -8,8 +8,6 @@
 #include <stdlib.h>
 #include "../includes/libs/bn.h"
 
-//TODO: ENCRYPTIE PRIAVATE KEY D KEY
-
 //cpp com
 bool is_prime(int number) {
     if (number % 2 == 0) {
@@ -66,27 +64,34 @@ char* generate_publickey() {
     struct bn totient;
     struct bn primenumber1_dec;
     struct bn primenumber2_dec;
-    bignum_from_int(&primenumber1, 2);
-    bignum_from_int(&primenumber2, 7);
+    bignum_from_int(&primenumber1, 11);
+    bignum_from_int(&primenumber2, 23);
+    char x[9000];
     bignum_mul(&primenumber1, &primenumber2, &primenumber_multiplication);
     bignum_assign(&primenumber1_dec,&primenumber1);
     bignum_assign(&primenumber2_dec,&primenumber2);
     bignum_dec(&primenumber1_dec);
     bignum_dec(&primenumber2_dec);
     bignum_mul(&primenumber1_dec, &primenumber2_dec, &totient);
-    long x = public_ekey(totient,primenumber_multiplication);
+    bignum_to_string(&totient, x, sizeof(x));
     char* buf =  (char*) malloc(20*sizeof(char));
-    char buf2[512];
-    sprintf(buf,"%lx",x);
+    char buf2[10240];
+    long e = public_ekey(totient,primenumber_multiplication);
+    sprintf(buf,"%lx",e);
     bignum_to_string(&totient, buf2, sizeof(buf2));
     char* public_keypair = (char*) malloc(2 * sizeof(char));
-    public_keypair[0] = *buf;
-    public_keypair[1] = *buf2; 
+    int bilal = 12;
+    insert_buffers_in_array(&bilal);
+    printf("%d \n",bilal);
+    // public_keypair[0] = buf2[0];
+    // public_keypair[1] = buf2[1];
+    // public_keypair[1] = *buf2; 
+    // printf("%s \n", buf);
+    // printf("%c %c \n", public_keypair[0],public_keypair[1]);
     return public_keypair;
 }
 //The raven
 char* generate_privatekey(char public_ekey, char totient) {
-    //d = (1+x*6)/5 === 1
     struct bn e;
     struct bn totients;
     struct bn e_d_mult;
@@ -120,6 +125,6 @@ int main(int argc, char *argv[]) {
     time_t t; 
     srand((unsigned) time(&t));
     char* public_pair = generate_publickey();
-    generate_privatekey(public_pair[0],public_pair[1]);
+    // generate_privatekey(public_pair[0],public_pair[1]);
     return 0;
 } 

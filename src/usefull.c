@@ -38,8 +38,8 @@ int gcd(long number1, long number2) {
 }
 
 long public_ekey(struct bn totien, struct bn N) {
-    char buf[256];
-    char buf2[512];
+    char buf[256]; //malloc
+    char buf2[512]; //malloc
     bignum_to_string(&totien, buf, sizeof(buf));
     bignum_to_string(&N, buf2, sizeof(buf2));
     long totient_digits = strtol(buf, NULL, 16);
@@ -51,4 +51,8 @@ long public_ekey(struct bn totien, struct bn N) {
             return e;
         }
     }
+}
+
+void insert_buffers_in_array(int *foo) {
+    *foo = 1;
 }

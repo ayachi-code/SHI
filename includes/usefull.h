@@ -27,3 +27,13 @@ long public_ekey(struct bn totien, struct bn N);
  * @note the gcd is calculated with the Euclid's algorithm.
  **/  
 int gcd(long number1, long number2);
+
+
+/**
+ *@param array the array where u want the string to be written
+ *@param buffer1 buffer 1 
+ *@param buffer2 buffer 2
+
+*/
+void insert_buffers_in_array(int *foo);
+
