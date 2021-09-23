@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include "../includes/libs/bn.h"
 
+//TODO: ENCRYPTIE PRIAVATE KEY D KEY
+
 //cpp com
 bool is_prime(int number) {
     if (number % 2 == 0) {
@@ -95,19 +97,23 @@ char* generate_privatekey(char public_ekey, char totient) {
     sprintf(buf2, "%c", totient);
     bignum_from_string(&e, buf, 8); 
     bignum_from_string(&totients, buf2, 8); 
-    //int i = 0;
     struct bn d;
     struct bn d_e;
     struct bn mod_val;
+    struct bn mod1;
+    bignum_from_int(&mod1,1);
     bignum_from_int(&d, 2);
     while (true) {
         bignum_mul(&d, &e, &d_e);
         bignum_mod(&d_e, &totients, &mod_val);
-        bignum_to_string(&mod_val, public_ekey_hex, sizeof(public_ekey_hex));
-        printf("%s ",public_ekey_hex);
-        break;
+        if (bignum_cmp(&mod_val, &mod1) == EQUAL) {
+            bignum_to_string(&d, public_ekey_hex, sizeof(public_ekey_hex));
+            printf("DIT IS DE PRIVATE KEY  ");
+            printf("%s \n ",public_ekey_hex);
+            break;
+        }
+        bignum_inc(&d);
     }
-    // bignum_mul(&e,&products, &e_d_mult);
 }
 
 int main(int argc, char *argv[]) {
