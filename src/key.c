@@ -65,7 +65,7 @@ char* generate_publickey() {
     struct bn primenumber1_dec;
     struct bn primenumber2_dec;
     bignum_from_int(&primenumber1, 11);
-    bignum_from_int(&primenumber2, 23);
+    bignum_from_int(&primenumber2, 11);
     char x[9000];
     bignum_mul(&primenumber1, &primenumber2, &primenumber_multiplication);
     bignum_assign(&primenumber1_dec,&primenumber1);
@@ -80,7 +80,12 @@ char* generate_publickey() {
     sprintf(buf,"%lx",e);
     bignum_to_string(&totient, buf2, sizeof(buf2));
     char* public_keypair = (char*) malloc(2 * sizeof(char));
-    // public_keypair[0] = buf2[0];
+    const char *options[2][100];
+    options[0][0] = "test1";
+    options[1][0] = "test2";
+    printf("%s \n",options[1][0]);
+    // insert_buffers_in_array(public_keypair, buf, buf2);
+    // public_keypair[0] = buf2[0]; 
     // public_keypair[1] = buf2[1];
     // public_keypair[1] = *buf2; 
     // printf("%s \n", buf);
