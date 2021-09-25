@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include "../includes/libs/bn.h"
 
+//TODO maak multi dimendie array om de public pair op te slaan
 //cpp com
 bool is_prime(int number) {
     if (number % 2 == 0) {
@@ -57,7 +58,11 @@ int generate_prime() {
     }
 }
 
-char* generate_publickey() { 
+struct public_key_pair {
+    char e_value[250];
+    char product[250];
+};
+struct public_key_pair generate_publickey() { 
     struct bn primenumber1;
     struct bn primenumber2;
     struct bn primenumber_multiplication;
@@ -79,18 +84,13 @@ char* generate_publickey() {
     long e = public_ekey(totient,primenumber_multiplication);
     sprintf(buf,"%lx",e);
     bignum_to_string(&totient, buf2, sizeof(buf2));
-    char* public_keypair = (char*) malloc(2 * sizeof(char));
-    const char *options[2][100];
-    options[0][0] = "test1";
-    options[1][0] = "test2";
-    printf("%s \n",options[1][0]);
-    // insert_buffers_in_array(public_keypair, buf, buf2);
-    // public_keypair[0] = buf2[0]; 
-    // public_keypair[1] = buf2[1];
-    // public_keypair[1] = *buf2; 
-    // printf("%s \n", buf);
-    // printf("%c %c \n", public_keypair[0],public_keypair[1]);
-    return public_keypair;
+    struct public_key_pair pair;
+    pair.e_value[0] = 'a';
+    pair.product[0] = 'b';
+    // const char *public_keypair[2][100];
+    // public_keypair[0][0] = buf;
+    // public_keypair[1][0] = buf2;
+    return pair;
 }
 //The raven
 char* generate_privatekey(char public_ekey, char totient) {
@@ -126,7 +126,8 @@ char* generate_privatekey(char public_ekey, char totient) {
 int main(int argc, char *argv[]) {
     time_t t; 
     srand((unsigned) time(&t));
-    char* public_pair = generate_publickey();
+    struct public_key_pair foo = generate_publickey();
+    printf("%s \n",foo.e_value);
     // generate_privatekey(public_pair[0],public_pair[1]);
     return 0;
 } 

@@ -1,7 +1,7 @@
 /**
  * @returns returns the public key pair
  **/
-char* generate_publickey();
+struct public_key_pair generate_publickey();
 
 /**
  * @return returns the private key pair
