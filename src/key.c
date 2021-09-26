@@ -61,6 +61,7 @@ int generate_prime() {
 struct public_key_pair {
     char* e_value;
     char* product;
+    char* totient;
 };
 struct public_key_pair generate_publickey() { 
     struct bn primenumber1;
@@ -72,7 +73,9 @@ struct public_key_pair generate_publickey() {
     bignum_from_int(&primenumber1, 11);
     bignum_from_int(&primenumber2, 11);
     char x[9000];
+    char vb[9000];
     bignum_mul(&primenumber1, &primenumber2, &primenumber_multiplication);
+    bignum_to_string(&primenumber_multiplication, vb, sizeof(vb));
     bignum_assign(&primenumber1_dec,&primenumber1);
     bignum_assign(&primenumber2_dec,&primenumber2);
     bignum_dec(&primenumber1_dec);
@@ -87,7 +90,8 @@ struct public_key_pair generate_publickey() {
     struct public_key_pair pair;
     // char* zlok = "bilalbilalbilalbilal";
     pair.e_value = buf;
-    pair.product = buf2;
+    pair.totient = buf2;
+    pair.product = vb;
     // const char *public_keypair[2][100];
     // public_keypair[0][0] = buf;
     // public_keypair[1][0] = buf2;
