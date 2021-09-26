@@ -99,40 +99,41 @@ struct public_key_pair generate_publickey() {
 }
 //The raven
 char* generate_privatekey(char* public_ekey, char* totient) {
-    printf("%s \n",totient);
-    // struct bn e;
-    // struct bn totients;
-    // struct bn e_d_mult;
-    // char public_ekey_hex[9000];
-    // char buf[1024];
-    // char buf2[1024];
-    // sprintf(buf, "%c", public_ekey);
-    // sprintf(buf2, "%c", totient);
-    // bignum_from_string(&e, buf, 8); 
-    // bignum_from_string(&totients, buf2, 8); 
-    // struct bn d;
-    // struct bn d_e;
-    // struct bn mod_val;
-    // struct bn mod1;
-    // bignum_from_int(&mod1,1);
-    // bignum_from_int(&d, 2);
-    // while (true) {
-    //     bignum_mul(&d, &e, &d_e);
-    //     bignum_mod(&d_e, &totients, &mod_val);
-    //     if (bignum_cmp(&mod_val, &mod1) == EQUAL) {
-    //         bignum_to_string(&d, public_ekey_hex, sizeof(public_ekey_hex));
-    //         printf("DIT IS DE PRIVATE KEY  ");
-    //         printf("%s \n ",public_ekey_hex);
-    //         break;
-    //     }
-    //     bignum_inc(&d);
-    // }
+    struct bn e;
+    struct bn totients;
+    struct bn e_d_mult;
+    static char public_ekey_hex[9000];
+    // char* public_ekey_hex = malloc(9000*sizeof(char));
+    char buf[1024];
+    char buf2[1024];
+    sprintf(buf, "%s", public_ekey);
+    sprintf(buf2, "%s", totient);
+    bignum_from_string(&e, buf, 8); 
+    bignum_from_string(&totients, buf2, 8); 
+    struct bn d;
+    struct bn d_e;
+    struct bn mod_val;
+    struct bn mod1;
+    bignum_from_int(&mod1,1);
+    bignum_from_int(&d, 2);
+    while (true) {
+        bignum_mul(&d, &e, &d_e);
+        bignum_mod(&d_e, &totients, &mod_val);
+        if (bignum_cmp(&mod_val, &mod1) == EQUAL) {
+            bignum_to_string(&d, public_ekey_hex, sizeof(public_ekey_hex));
+            printf("DIT IS DE PRIVATE KEY  ");
+            printf("%s \n ",public_ekey_hex);
+            return public_ekey_hex;
+            break;
+        }
+        bignum_inc(&d);
+    }
 }
 
 int main(int argc, char *argv[]) {
     time_t t; 
     srand((unsigned) time(&t));
     struct public_key_pair public_pair = generate_publickey();
-    generate_privatekey(public_pair.e_value,public_pair.totient);
+    char* x = generate_privatekey(public_pair.e_value,public_pair.totient);
     return 0;
 } 
