@@ -59,8 +59,8 @@ int generate_prime() {
 }
 
 struct public_key_pair {
-    char e_value[250];
-    char product[250];
+    char* e_value;
+    char* product;
 };
 struct public_key_pair generate_publickey() { 
     struct bn primenumber1;
@@ -85,8 +85,9 @@ struct public_key_pair generate_publickey() {
     sprintf(buf,"%lx",e);
     bignum_to_string(&totient, buf2, sizeof(buf2));
     struct public_key_pair pair;
-    pair.e_value[0] = 'a';
-    pair.product[0] = 'b';
+    // char* zlok = "bilalbilalbilalbilal";
+    pair.e_value = buf;
+    pair.product = buf2;
     // const char *public_keypair[2][100];
     // public_keypair[0][0] = buf;
     // public_keypair[1][0] = buf2;
@@ -126,8 +127,7 @@ char* generate_privatekey(char public_ekey, char totient) {
 int main(int argc, char *argv[]) {
     time_t t; 
     srand((unsigned) time(&t));
-    struct public_key_pair foo = generate_publickey();
-    printf("%s \n",foo.e_value);
+    struct public_key_pair public_pair = generate_publickey();
     // generate_privatekey(public_pair[0],public_pair[1]);
     return 0;
 } 
