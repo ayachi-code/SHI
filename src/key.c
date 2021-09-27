@@ -53,6 +53,7 @@ int generate_prime() {
     while (true) {
         random_number = 1000000000 + floor(rand() % 9999999999);
         if (is_prime(random_number)) {
+            printf("%d \n", random_number);
             return random_number;
         }
     }
@@ -71,7 +72,7 @@ struct public_key_pair generate_publickey() {
     struct bn primenumber1_dec;
     struct bn primenumber2_dec;
     bignum_from_int(&primenumber1, 11);
-    bignum_from_int(&primenumber2, 11);
+    bignum_from_int(&primenumber2, 7);
     char x[9000];
     char vb[9000];
     bignum_mul(&primenumber1, &primenumber2, &primenumber_multiplication);
@@ -82,28 +83,25 @@ struct public_key_pair generate_publickey() {
     bignum_dec(&primenumber2_dec);
     bignum_mul(&primenumber1_dec, &primenumber2_dec, &totient);
     bignum_to_string(&totient, x, sizeof(x));
+    printf("Totient: %s \n",x);
     char* buf =  (char*) malloc(20*sizeof(char));
     char buf2[10240];
     long e = public_ekey(totient,primenumber_multiplication);
+    printf("E key: %ld \n",e);
     sprintf(buf,"%lx",e);
     bignum_to_string(&totient, buf2, sizeof(buf2));
     struct public_key_pair pair;
-    // char* zlok = "bilalbilalbilalbilal";
     pair.e_value = buf;
     pair.totient = buf2;
     pair.product = vb;
-    // const char *public_keypair[2][100];
-    // public_keypair[0][0] = buf;
-    // public_keypair[1][0] = buf2;
     return pair;
 }
-//The raven
+
 char* generate_privatekey(char* public_ekey, char* totient) {
     struct bn e;
     struct bn totients;
     struct bn e_d_mult;
     static char public_ekey_hex[9000];
-    // char* public_ekey_hex = malloc(9000*sizeof(char));
     char buf[1024];
     char buf2[1024];
     sprintf(buf, "%s", public_ekey);
@@ -135,5 +133,10 @@ int main(int argc, char *argv[]) {
     srand((unsigned) time(&t));
     struct public_key_pair public_pair = generate_publickey();
     char* x = generate_privatekey(public_pair.e_value,public_pair.totient);
+    long x_o = strtol(x, NULL, 16);
+    long y_o = strtol(public_pair.product, NULL, 16);
+    long e_o = strtol(public_pair.e_value, NULL, 16);
+    printf("Private key (%ld,%ld)\n",x_o,y_o);
+    printf("Public key (%ld,%ld)",e_o,y_o);
     return 0;
-} 
+}  
