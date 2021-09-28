@@ -21,3 +21,9 @@ bool is_prime();
  * @return a prime number
  **/ 
 int generate_prime();
+
+struct public_key_pair {
+    char* e_value;
+    char* product;
+    char* totient;
+};

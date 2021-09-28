@@ -59,11 +59,6 @@ int generate_prime() {
     }
 }
 
-struct public_key_pair {
-    char* e_value;
-    char* product;
-    char* totient;
-};
 struct public_key_pair generate_publickey() { 
     struct bn primenumber1;
     struct bn primenumber2;
@@ -71,8 +66,8 @@ struct public_key_pair generate_publickey() {
     struct bn totient;
     struct bn primenumber1_dec;
     struct bn primenumber2_dec;
-    bignum_from_int(&primenumber1, 11);
-    bignum_from_int(&primenumber2, 7);
+    bignum_from_int(&primenumber1, 7);
+    bignum_from_int(&primenumber2,3);
     char x[9000];
     char vb[9000];
     bignum_mul(&primenumber1, &primenumber2, &primenumber_multiplication);
@@ -83,11 +78,9 @@ struct public_key_pair generate_publickey() {
     bignum_dec(&primenumber2_dec);
     bignum_mul(&primenumber1_dec, &primenumber2_dec, &totient);
     bignum_to_string(&totient, x, sizeof(x));
-    printf("Totient: %s \n",x);
     char* buf =  (char*) malloc(20*sizeof(char));
     char buf2[10240];
     long e = public_ekey(totient,primenumber_multiplication);
-    printf("E key: %ld \n",e);
     sprintf(buf,"%lx",e);
     bignum_to_string(&totient, buf2, sizeof(buf2));
     struct public_key_pair pair;
@@ -119,8 +112,6 @@ char* generate_privatekey(char* public_ekey, char* totient) {
         bignum_mod(&d_e, &totients, &mod_val);
         if (bignum_cmp(&mod_val, &mod1) == EQUAL) {
             bignum_to_string(&d, public_ekey_hex, sizeof(public_ekey_hex));
-            printf("DIT IS DE PRIVATE KEY  ");
-            printf("%s \n ",public_ekey_hex);
             return public_ekey_hex;
             break;
         }
@@ -136,7 +127,10 @@ int main(int argc, char *argv[]) {
     long x_o = strtol(x, NULL, 16);
     long y_o = strtol(public_pair.product, NULL, 16);
     long e_o = strtol(public_pair.e_value, NULL, 16);
+    printf("Public key (%ld,%ld) \n",e_o,y_o);
     printf("Private key (%ld,%ld)\n",x_o,y_o);
-    printf("Public key (%ld,%ld)",e_o,y_o);
     return 0;
 }  
+
+//CRACKER
+//G 7
