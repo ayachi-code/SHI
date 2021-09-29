@@ -37,3 +37,7 @@ int gcd(long number1, long number2);
 */
 void insert_buffers_in_array(char *array, char*buffer1, char*buffer2);
 
+/**
+ * 
+ **/ 
+int extended_gcd(int a, int b, int *x, int *y);

@@ -66,8 +66,8 @@ struct public_key_pair generate_publickey() {
     struct bn totient;
     struct bn primenumber1_dec;
     struct bn primenumber2_dec;
-    bignum_from_int(&primenumber1, 7);
-    bignum_from_int(&primenumber2,3);
+    bignum_from_int(&primenumber1, 3);
+    bignum_from_int(&primenumber2,7);
     char x[9000];
     char vb[9000];
     bignum_mul(&primenumber1, &primenumber2, &primenumber_multiplication);
@@ -113,24 +113,32 @@ char* generate_privatekey(char* public_ekey, char* totient) {
         if (bignum_cmp(&mod_val, &mod1) == EQUAL) {
             bignum_to_string(&d, public_ekey_hex, sizeof(public_ekey_hex));
             return public_ekey_hex;
-            break;
         }
         bignum_inc(&d);
     }
 }
 
 int main(int argc, char *argv[]) {
-    time_t t; 
-    srand((unsigned) time(&t));
-    struct public_key_pair public_pair = generate_publickey();
-    char* x = generate_privatekey(public_pair.e_value,public_pair.totient);
-    long x_o = strtol(x, NULL, 16);
-    long y_o = strtol(public_pair.product, NULL, 16);
-    long e_o = strtol(public_pair.e_value, NULL, 16);
-    printf("Public key (%ld,%ld) \n",e_o,y_o);
-    printf("Private key (%ld,%ld)\n",x_o,y_o);
+    int a = 217;
+    int b = 220;
+    int x, y;
+    printf("The GCD is %d\n", extended_gcd(a, b, &x, &y));
+    printf("x = %d, y = %d", x, y);
+    // time_t t; 
+    // srand((unsigned) time(&t));
+    // struct public_key_pair public_pair = generate_publickey();
+    // char* x = generate_privatekey(public_pair.e_value,public_pair.totient);
+    // long x_o = strtol(x, NULL, 16);
+    // long y_o = strtol(public_pair.product, NULL, 16);
+    // long e_o = strtol(public_pair.e_value, NULL, 16);
+    // printf("Public key (%ld,%ld) \n",e_o,y_o);
+    // printf("Private key (%ld,%ld)\n",x_o,y_o);
     return 0;
-}  
-
+}
 //CRACKER
-//G 7
+//BILAL
+//K
+//B
+//(5,21) pub key
+
+

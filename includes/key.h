@@ -27,3 +27,5 @@ bool is_prime();
  * @return a prime number
  **/ 
 int generate_prime();
+
+//C=3

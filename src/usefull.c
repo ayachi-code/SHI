@@ -53,7 +53,16 @@ long public_ekey(struct bn totien, struct bn N) {
     }
 }
 
-void insert_buffers_in_array(char *array, char* buffer1, char*buffer2) {
-    printf("%s \n",buffer2);
-    return;
+int extended_gcd(int a, int b, int *x, int *y) {
+    if (a == 0)
+    {
+        *x = 0;
+        *y = 1;
+        return b;
+    }
+    int _x, _y;
+    int gcd = extended_gcd(b % a, a, &_x, &_y);
+    *x = _y - (b/a) * _x;
+    *y = _x;
+    return gcd;
 }
