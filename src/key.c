@@ -106,7 +106,12 @@ char* generate_privatekey(char* public_ekey, char* totient) {
     printf("%ld %ld \n",public_ekey_d, totient_d);
     extended_gcd(public_ekey_d, totient_d, &x, &y);
     printf("BI %d %d \n",x,y);
-    // printf("%d %d \n",x,y);
+    if (x < 0) {
+        int pd = totient_d + x;
+        printf("-PK is %d \n",pd);
+    } else {
+        printf("+PK is %d \n",x);
+    }
     // if (x > y) {
     //     return x;
     // } else if (y > x) {
