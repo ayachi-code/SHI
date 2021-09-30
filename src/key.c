@@ -66,8 +66,8 @@ struct public_key_pair generate_publickey() {
     struct bn totient;
     struct bn primenumber1_dec;
     struct bn primenumber2_dec;
-    bignum_from_int(&primenumber1, 5);
-    bignum_from_int(&primenumber2,11);
+    bignum_from_int(&primenumber1, 239); //239
+    bignum_from_int(&primenumber2,233); //233
     char x[9000];
     char vb[9000];
     bignum_mul(&primenumber1, &primenumber2, &primenumber_multiplication);
