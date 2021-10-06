@@ -90,7 +90,7 @@ struct public_key_pair generate_publickey() {
     return pair;
 }
 
-char* generate_privatekey(char* public_ekey, char* totient) {
+int generate_privatekey(char* public_ekey, char* totient) {
     struct bn e;
     struct bn totients;
     struct bn e_d_mult;
@@ -108,9 +108,13 @@ char* generate_privatekey(char* public_ekey, char* totient) {
     printf("BI %d %d \n",x,y);
     if (x < 0) {
         int pd = totient_d + x;
+        char buf[1024];
         printf("-PK is %d \n",pd);
+        return pd;
     } else {
+        int pd = totient_d + x;
         printf("+PK is %d \n",x);
+        return pd;
     }
     // if (x > y) {
     //     return x;
@@ -125,15 +129,15 @@ char* generate_privatekey(char* public_ekey, char* totient) {
     struct bn mod1;
     bignum_from_int(&mod1,1);
     bignum_from_int(&d, 2);
-    while (true) {
-        bignum_mul(&d, &e, &d_e);
-        bignum_mod(&d_e, &totients, &mod_val);
-        if (bignum_cmp(&mod_val, &mod1) == EQUAL) {
-            bignum_to_string(&d, public_ekey_hex, sizeof(public_ekey_hex));
-            return public_ekey_hex;
-        }
-        bignum_inc(&d);
-    }
+    // while (true) {
+    //     bignum_mul(&d, &e, &d_e);
+    //     bignum_mod(&d_e, &totients, &mod_val);
+    //     if (bignum_cmp(&mod_val, &mod1) == EQUAL) {
+    //         bignum_to_string(&d, public_ekey_hex, sizeof(public_ekey_hex));
+    //         return public_ekey_hex;
+    //     }
+    //     bignum_inc(&d);
+    // }
 }
 
 int main(int argc, char *argv[]) {
@@ -141,13 +145,13 @@ int main(int argc, char *argv[]) {
     srand((unsigned) time(&t));
     struct public_key_pair public_pair = generate_publickey();
     // int x = generate_privatekey(public_pair.e_value,public_pair.totient);
-    char* x = generate_privatekey(public_pair.e_value,public_pair.totient);
+    int x = generate_privatekey(public_pair.e_value,public_pair.totient);
     // printf("%d \n",x);
-    long x_o = strtol(x, NULL, 16);
+    // long x_o = strtol(x, NULL, 16);
     long y_o = strtol(public_pair.product, NULL, 16);
     long e_o = strtol(public_pair.e_value, NULL, 16);
     printf("Public key (%ld,%ld) \n",e_o,y_o);
-    printf("Private key (%ld,%ld)\n",x_o,y_o);
+    printf("Private key (%d,%ld)\n",x,y_o);
     // int a = 21;
     // int b = 11;
     // int x, y;
